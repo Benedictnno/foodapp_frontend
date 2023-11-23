@@ -1,0 +1,68 @@
+*{
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'inter', sans-serif;
+}
+
+
+.titles_container{
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-family: 'inter',sans-serif;
+}
+.SignUp_container{
+  display: flex;
+  margin-top: 3rem;
+ font-size: large;
+  font-family: 'inter',sans-serif;
+  font-weight: 600;
+}
+
+.SignUp_Btn{
+  text-decoration: none;
+  font-size: 1.1rem;
+    font-family: 'inter', sans-serif;
+    font-weight: 500;
+    color: aliceblue;
+    background-color: #f1890e;
+    padding: .5rem;
+    margin-left: 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.Btn{
+  text-decoration: none;
+  font-size: 1.1rem;
+    font-family: 'inter', sans-serif;
+    font-weight: 500;
+    color: aliceblue;
+    background-color: #f1890e;
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+.space{
+  
+  margin-left: 2rem;
+  
+}
+.SignUp_Btn_nc{
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.1rem;
+    font-family: 'inter', sans-serif;
+    font-weight: 500;
+   
+    padding: .5rem;
+    border-radius: 5px;
+    
+}
+
+.categories_link{
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+  
+}
