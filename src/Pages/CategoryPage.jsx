@@ -34,6 +34,12 @@ function CategoryPage() {
   const handleMealCategoryClick = (cat) => {
     dispatch(categoryInputValue(cat)), dispatch(getSelectedInputCategory());
   };
+  const handleDrinkCategoryClick = (cat) => {
+    dispatch(categoryInputValue(cat)), dispatch(getSelectedInputCategory());
+  };
+  const handleSelect = (cat) => {
+    dispatch(selectedInputValue(cat)), dispatch(getSelectedInputCategory());
+  };
 
   return (
     <CategoryPageStyles>
@@ -63,7 +69,7 @@ function CategoryPage() {
             return (
               <div
                 className="ingredients_text"
-                onClick={() => dispatch(categoryInputValue(item.name))}
+                onClick={() => handleDrinkCategoryClick(item.name)}
               >
                 {item.name}
               </div>
@@ -128,7 +134,7 @@ function CategoryPage() {
             name="A-Z"
             id=""
             value={selectedInput}
-            onChange={(e) => dispatch(selectedInputValue(e.target.value))}
+            onChange={(e) => handleSelect(e.target.value)}
           >
             <option value="" selected disabled hidden>
               Search by first letter

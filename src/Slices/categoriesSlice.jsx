@@ -16,7 +16,15 @@ const initialState = {
       image: "https://www.thecocktaildb.com/images/ingredients/Vodka.png",
     },
     {
-      name: "non Alcoholic",
+      name: "Non_Alcoholic",
+      image: "https://www.thecocktaildb.com/images/ingredients/Vodka.png",
+    },
+    {
+      name: "Ordinary_Drink",
+      image: "https://www.thecocktaildb.com/images/ingredients/Vodka.png",
+    },
+    {
+      name: "Cocktail",
       image: "https://www.thecocktaildb.com/images/ingredients/Vodka.png",
     },
     {
@@ -24,7 +32,7 @@ const initialState = {
       image: "https://www.thecocktaildb.com/images/ingredients/Vodka.png",
     },
     {
-      name: "gin",
+      name: "Gin",
       image: "https://www.thecocktaildb.com/images/ingredients/Gin.png",
     },
     {
@@ -76,7 +84,7 @@ const initialState = {
       image: "https://www.thecocktaildb.com/images/ingredients/Vodka.png",
     },
     {
-      name: "gin",
+      name: "Gin",
       image: "https://www.thecocktaildb.com/images/ingredients/Gin.png",
     },
     {
@@ -89,12 +97,14 @@ const initialState = {
     },
   ],
 };
+const drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
+
 export const getMealCategory = createAsyncThunk(
   "meals category",
   async (_, thunk) => {
     try {
       const reps = await axios.get(
-        "https://www.themealdb.com/api/json/v1/1/categories.php"
+        `https://www.themealdb.com/api/json/v1/1/categories.php`
       );
       return reps;
     } catch (error) {
@@ -106,19 +116,68 @@ export const getMealCategory = createAsyncThunk(
 export const getSelectedInputCategory = createAsyncThunk(
   "meals-category-value",
   async (_, thunkAPI) => {
-    const { categoryInput } = thunkAPI.getState().category;
-    
-    try {
-      const reps = await axios.get(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryInput}`
-      );
-      return reps;
-    } catch (error) {
-      console.log(error);
+    const { categoryInput, isMeals, selectedInput } =
+      thunkAPI.getState().category;
+    if (categoryInput === "Alcoholic" || categoryInput === "Non_Alcoholic") {
+      try {
+        const reps = await axios.get(
+          `${drinkUrl}filter.php?a=${categoryInput}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (
+      categoryInput === "Ordinary_Drink" ||
+      categoryInput === "Cocktail"
+    ) {
+      try {
+        const reps = await axios.get(
+          `${drinkUrl}filter.php?c=${categoryInput}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (!isMeals && selectedInput) {
+      try {
+        const reps = await axios.get(
+          `${drinkUrl}search.php?f=${selectedInput}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (isMeals && selectedInput) {
+      try {
+        const reps = await axios.get(
+          `${drinkUrl}search.php?f=${selectedInput}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (!isMeals) {
+      try {
+        const reps = await axios.get(
+          `${drinkUrl}filter.php?i=${categoryInput}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const reps = await axios.get(
+          `${drinkUrl}filter.php?c=${categoryInput}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 );
-
 
 const getMealCategorySlice = createSlice({
   name: "category",
@@ -157,7 +216,7 @@ const getMealCategorySlice = createSlice({
       })
       .addCase(getSelectedInputCategory.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.CategoryValues = payload.data.meals;
+        state.CategoryValues = payload.data;
       })
       .addCase(getSelectedInputCategory.rejected, (state) => {
         state.isLoading = false;
@@ -169,7 +228,8 @@ export const {
   toggleCategories,
   selectedInputValue,
   categoryInputValue,
-  inputValue,selectedInput
+  inputValue,
+  selectedInput,
 } = getMealCategorySlice.actions;
 
 export default getMealCategorySlice.reducer;
