@@ -4,6 +4,10 @@ import axios from "axios";
 const initialState = {
   isLoading: false,
   isMeals: true,
+  inputSearchValue: "",
+  categoryInput: "",
+  selectedInput: "",
+  CategoryValues: [],
   mealCategories: [],
   fullMealCategories: [],
   fullDrinkCategories: [
@@ -89,7 +93,7 @@ export const getMealCategory = createAsyncThunk(
   "meals category",
   async (_, thunk) => {
     try {
-      const reps = axios.get(
+      const reps = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/categories.php"
       );
       return reps;
@@ -99,14 +103,41 @@ export const getMealCategory = createAsyncThunk(
   }
 );
 
+export const getSelectedInputCategory = createAsyncThunk(
+  "meals-category-value",
+  async (_, thunkAPI) => {
+    const { categoryInput } = thunkAPI.getState().category;
+    
+    try {
+      const reps = await axios.get(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryInput}`
+      );
+      return reps;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+
 const getMealCategorySlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-    toggleCategories:(state,payload)=>{
+    toggleCategories: (state, payload) => {
       state.isMeals = payload.payload;
-    }
+    },
+    inputValue: (state, payload) => {
+      state.inputSearchValue = payload.payload;
+    },
+    categoryInputValue: (state, payload) => {
+      state.categoryInput = payload.payload;
+    },
+    selectedInputValue: (state, payload) => {
+      state.selectedInput = payload.payload;
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getMealCategory.pending, (state) => {
@@ -120,10 +151,25 @@ const getMealCategorySlice = createSlice({
       })
       .addCase(getMealCategory.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(getSelectedInputCategory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSelectedInputCategory.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.CategoryValues = payload.data.meals;
+      })
+      .addCase(getSelectedInputCategory.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });
 
-export const { toggleCategories } = getMealCategorySlice.actions;
+export const {
+  toggleCategories,
+  selectedInputValue,
+  categoryInputValue,
+  inputValue,selectedInput
+} = getMealCategorySlice.actions;
 
 export default getMealCategorySlice.reducer;

@@ -1,22 +1,39 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCategories } from "../Slices/categoriesSlice";
+import {
+  categoryInputValue,
+  getSelectedInputCategory,
+  inputValue,
+  selectedInputValue,
+  toggleCategories,
+} from "../Slices/categoriesSlice";
 import { getRandomCockTail, getRandomMeal } from "../Slices/randomMealsSlice";
 import { getMealCategory } from "../Slices/categoriesSlice";
 import { CategoryPageStyles } from "../Styles/CategopageStyles";
 import { FiSearch } from "react-icons/fi";
 
 function CategoryPage() {
-  const { fullMealCategories, fullDrinkCategories, isMeals } = useSelector(
-    (store) => store.category
-  );
+  const {
+    fullMealCategories,
+    inputSearchValue,
+    selectedInput,
+    fullDrinkCategories,
+    isMeals,
+    categoryInput,
+  } = useSelector((store) => store.category);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getRandomCockTail());
     dispatch(getRandomMeal());
     dispatch(getMealCategory());
+    // dispatch(getSelectedInputCategory());
   }, []);
+
+  const handleMealCategoryClick = (cat) => {
+    dispatch(categoryInputValue(cat)), dispatch(getSelectedInputCategory());
+  };
 
   return (
     <CategoryPageStyles>
@@ -43,7 +60,14 @@ function CategoryPage() {
             </div>
           </div>
           {fullDrinkCategories.map((item, index) => {
-            return <div className="ingredients_text">{item.name}</div>;
+            return (
+              <div
+                className="ingredients_text"
+                onClick={() => dispatch(categoryInputValue(item.name))}
+              >
+                {item.name}
+              </div>
+            );
           })}
         </section>
       )}
@@ -71,7 +95,14 @@ function CategoryPage() {
           </div>
 
           {fullMealCategories.map((item, index) => {
-            return <div className="ingredients_text">{item.strCategory}</div>;
+            return (
+              <div
+                className="ingredients_text"
+                onClick={() => handleMealCategoryClick(item.strCategory)}
+              >
+                {item.strCategory}
+              </div>
+            );
           })}
         </section>
       )}
@@ -79,17 +110,29 @@ function CategoryPage() {
         <div className="categoryInputContainer">
           <div className="InputContainer">
             <FiSearch size={30} />
-            <input type="text" className="categoryInput" />
+            <input
+              type="text"
+              value={inputSearchValue}
+              onChange={(e) => dispatch(inputValue(e.target.value))}
+              className="categoryInput"
+            />
           </div>
           <button
             type="button"
             className={"Btn SignUp_Btn_nc"}
-            onClick={() => dispatch(toggleCategories(true))}
+            // onClick={() => dispatch(toggleCategories(true))}
           >
             Search
           </button>
-          <select name="" id="">
-            <option value="Search by first letter">Search by first letter</option>
+          <select
+            name="A-Z"
+            id=""
+            value={selectedInput}
+            onChange={(e) => dispatch(selectedInputValue(e.target.value))}
+          >
+            <option value="" selected disabled hidden>
+              Search by first letter
+            </option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
@@ -116,7 +159,6 @@ function CategoryPage() {
             <option value="X">X</option>
             <option value="Y">Y</option>
             <option value="Z">Z</option>
-            
           </select>
         </div>
       </section>
