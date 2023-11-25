@@ -11,6 +11,8 @@ import { getRandomCockTail, getRandomMeal } from "../Slices/randomMealsSlice";
 import { getMealCategory } from "../Slices/categoriesSlice";
 import { CategoryPageStyles } from "../Styles/CategopageStyles";
 import { FiSearch } from "react-icons/fi";
+import MealsCard from "../Components/MealsCard";
+import DrinksCard from "../Components/DrinksCard";
 
 function CategoryPage() {
   const {
@@ -20,6 +22,7 @@ function CategoryPage() {
     fullDrinkCategories,
     isMeals,
     categoryInput,
+    CategoryValues,
   } = useSelector((store) => store.category);
 
   const dispatch = useDispatch();
@@ -28,8 +31,12 @@ function CategoryPage() {
     dispatch(getRandomCockTail());
     dispatch(getRandomMeal());
     dispatch(getMealCategory());
-    // dispatch(getSelectedInputCategory());
-  }, []);
+    if (isMeals) {
+      handleMealCategoryClick("Chicken");
+    } else {
+      handleDrinkCategoryClick("Cocktail");
+    }
+  }, [isMeals]);
 
   const handleMealCategoryClick = (cat) => {
     dispatch(categoryInputValue(cat)), dispatch(getSelectedInputCategory());
@@ -166,6 +173,13 @@ function CategoryPage() {
             <option value="Y">Y</option>
             <option value="Z">Z</option>
           </select>
+        </div>
+        <div>
+          {isMeals ? (
+            <MealsCard values={CategoryValues?.meals} />
+          ) : (
+            <DrinksCard values={CategoryValues?.drinks} />
+          )}
         </div>
       </section>
     </CategoryPageStyles>

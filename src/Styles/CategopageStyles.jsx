@@ -12,6 +12,7 @@ export const CategoryPageStyles = styled.main`
     /* justify-content: space-between; */
   }
   .ingredients_text {
+    
     margin: 1rem 0;
     transition: all 0.1s ease-in-out;
   }
@@ -20,6 +21,7 @@ export const CategoryPageStyles = styled.main`
     padding: 0.3rem;
     color: #fff;
     border-radius: 5px;
+    cursor:pointer;
   }
   .InputContainer {
     display: flex;

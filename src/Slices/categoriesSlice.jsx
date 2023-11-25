@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   isLoading: false,
-  isMeals: true,
+  isMeals: false,
   inputSearchValue: "",
   categoryInput: "",
   selectedInput: "",
@@ -98,7 +98,7 @@ const initialState = {
   ],
 };
 const drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
-
+const mealsUrl = "https://www.themealdb.com/api/json/v1/1/";
 export const getMealCategory = createAsyncThunk(
   "meals category",
   async (_, thunk) => {
@@ -118,6 +118,9 @@ export const getSelectedInputCategory = createAsyncThunk(
   async (_, thunkAPI) => {
     const { categoryInput, isMeals, selectedInput } =
       thunkAPI.getState().category;
+      console.log('====================================');
+      console.log(categoryInput);
+      console.log('====================================');
     if (categoryInput === "Alcoholic" || categoryInput === "Non_Alcoholic") {
       try {
         const reps = await axios.get(
@@ -151,7 +154,7 @@ export const getSelectedInputCategory = createAsyncThunk(
     } else if (isMeals && selectedInput) {
       try {
         const reps = await axios.get(
-          `${drinkUrl}search.php?f=${selectedInput}`
+          `${mealsUrl}search.php?f=${selectedInput}`
         );
         return reps;
       } catch (error) {
@@ -169,7 +172,7 @@ export const getSelectedInputCategory = createAsyncThunk(
     } else {
       try {
         const reps = await axios.get(
-          `${drinkUrl}filter.php?c=${categoryInput}`
+          `${mealsUrl}filter.php?c=${categoryInput}`
         );
         return reps;
       } catch (error) {

@@ -1,18 +1,25 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MainCategoryStyles } from "../Styles/MainCategotyStyle";
 import { Link } from "react-router-dom";
 import { MdExpandMore } from "react-icons/md";
+import { toggleCategories } from "../Slices/categoriesSlice";
 function MainCategory() {
   const { isLoading, mealCategories, drinkCategories } = useSelector(
     (store) => store.category
   );
 
+  const dispatch = useDispatch();
+
   return (
     <section>
       <div className="titles_container">
         <h1>Meals Major ingredient's</h1>{" "}
-        <Link to={"/categories"} className="categories_link">
+        <Link
+          to={"/categories"}
+          className="categories_link"
+          onClick={() => dispatch(toggleCategories(true))}
+        >
           See More <MdExpandMore size={25} />
         </Link>
       </div>
@@ -30,7 +37,11 @@ function MainCategory() {
 
       <div className="titles_container">
         <h1>Drinks Major ingredient's</h1>{" "}
-        <Link to={"/categories"} className="categories_link">
+        <Link
+          to={"/categories"}
+          className="categories_link"
+          onClick={() => dispatch(toggleCategories(false))}
+        >
           See More <MdExpandMore size={25} />
         </Link>
       </div>
@@ -47,7 +58,7 @@ function MainCategory() {
       </MainCategoryStyles>
       <article className="SignUp_container">
         <p>Sign Up to get free recipes on your favorite meals</p>
-        <Link className="SignUp_Btn">Sign Up</Link>
+        <Link to={'/Login'} className="SignUp_Btn">Sign Up</Link>
       </article>
     </section>
   );
