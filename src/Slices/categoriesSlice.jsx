@@ -118,9 +118,7 @@ export const getSelectedInputCategory = createAsyncThunk(
   async (_, thunkAPI) => {
     const { categoryInput, isMeals, selectedInput } =
       thunkAPI.getState().category;
-      console.log('====================================');
-      console.log(categoryInput);
-      console.log('====================================');
+     
     if (categoryInput === "Alcoholic" || categoryInput === "Non_Alcoholic") {
       try {
         const reps = await axios.get(

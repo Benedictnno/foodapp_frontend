@@ -54,10 +54,12 @@
   font-size: 1.1rem;
     font-family: 'inter', sans-serif;
     font-weight: 500;
-   
     padding: .5rem;
     border-radius: 5px;
     
+}
+.Profile_space{
+  margin: 2rem 6rem;
 }
 
 .categories_link{
