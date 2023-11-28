@@ -28,7 +28,6 @@ export const getDrinkSinglePage = createAsyncThunk(
   "Drink Single page",
   async (id, thunkAPI) => {
     
-      
         try {
           const resp = await axios.get(
             `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`

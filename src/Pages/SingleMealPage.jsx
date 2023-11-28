@@ -5,9 +5,9 @@ import { getMealSinglePage } from "../Slices/SinglePageSlice";
 function SingleMealPage() {
   const params = useParams();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getMealSinglePage(params.id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getMealSinglePage(params.id));
+  // }, []);
   return <div>SinglePage SinglePage</div>;
 }
 
