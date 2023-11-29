@@ -56,7 +56,6 @@
     font-weight: 500;
     padding: .5rem;
     border-radius: 5px;
-    
 }
 .Profile_space{
   margin: 2rem 6rem;
@@ -66,5 +65,19 @@
   text-decoration: none;
   font-weight: 600;
   color: black;
-  
+}
+
+.SinglePage_page_con{
+  display: flex;
+    margin-top: 1rem;
+    column-gap: 2rem;
+}
+
+.image{
+  width:30rem;
+  height: 27rem;
+}
+
+.top_space{
+  margin-top: 1rem;
 }

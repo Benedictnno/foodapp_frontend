@@ -55,7 +55,7 @@ const SinglePageSlice = createSlice({
       })
       .addCase(getMealSinglePage.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.SingleMealData = payload.data;
+        state.SingleMealData = payload.data.meals[0];
       })
       .addCase(getMealSinglePage.rejected, (state) => {
         state.isLoading = false;
@@ -65,7 +65,7 @@ const SinglePageSlice = createSlice({
       })
       .addCase(getDrinkSinglePage.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.SingleDrinkData = payload.data;
+        state.SingleDrinkData = payload.data.drinks[0];
       })
       .addCase(getDrinkSinglePage.rejected, (state) => {
         state.isLoading = false;

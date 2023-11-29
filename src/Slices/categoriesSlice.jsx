@@ -141,6 +141,7 @@ export const getSelectedInputCategory = createAsyncThunk(
         console.log(error);
       }
     } else if (!isMeals && selectedInput) {
+      console.log(selectedInput);
       try {
         const reps = await axios.get(
           `${drinkUrl}search.php?f=${selectedInput}`

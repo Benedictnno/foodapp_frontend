@@ -28,7 +28,7 @@ function CategoryPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRandomCockTail());
+    dispatch(getRandomCockTail());``
     dispatch(getRandomMeal());
     dispatch(getMealCategory());
     if (isMeals) {
