@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDrinkSinglePage } from "../Slices/SinglePageSlice";
-import { FaRegStar } from "react-icons/fa6";cccc
+import { FaRegStar } from "react-icons/fa6";
+import { AddProfiles } from "../Slices/ProfileDataSlice";
 
 function SingleDrinkPage() {
   const {
     SingleDrinkData: {
+      idDrink,
       strDrink,
       strDrinkThumb,
       strGlass,
@@ -65,7 +67,22 @@ function SingleDrinkPage() {
               >
                 <h1>{strDrink}</h1>
 
-                <FaRegStar size={40} />
+                <FaRegStar
+                  size={40}
+                  onClick={() =>
+                    dispatch(
+                      AddProfiles({
+                        type:"drink",
+                        idMeal:idDrink,
+                        strMeal:strDrink,
+                        strArea:strGlass,
+                        strCategory,
+                        strMealThumb:strDrinkThumb,
+                        note: "",
+                      })
+                    )
+                  }
+                />
               </div>
               <h2>
                 Glass : <span className="Btn">{strGlass}</span>

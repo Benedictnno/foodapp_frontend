@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getMealSinglePage } from "../Slices/SinglePageSlice";
 import { FaRegStar } from "react-icons/fa6";
+import { AddProfiles } from "../Slices/ProfileDataSlice";
 
 function SingleMealPage() {
   const {
     SingleMealData: {
+      idMeal,
       strMeal,
       strMealThumb,
       strArea,
@@ -77,7 +79,21 @@ function SingleMealPage() {
               >
                 <h1>{strMeal}</h1>
 
-                <FaRegStar size={40} />
+                <FaRegStar
+                  size={40}
+                  onClick={() =>
+                    dispatch(
+                      AddProfiles({
+                        idMeal,
+                        strMeal,
+                        strArea,
+                        strCategory,
+                        strMealThumb,
+                        note: "",
+                      })
+                    )
+                  }
+                />
               </div>
               <h2>
                 Area : <span className="Btn">{strArea}</span>
