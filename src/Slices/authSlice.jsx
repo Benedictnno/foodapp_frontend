@@ -18,9 +18,7 @@ export const registerUser = createAsyncThunk(
     try {
       const reps = await customUrl.post("auth/register", user);
 
-      console.log("====================================");
-      console.log(reps);
-      console.log("====================================");
+     
       return reps.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -31,12 +29,9 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (user, thunkAPI) => {
-    console.log(user);
+    
     try {
       const reps = await customUrl.post("auth/login", user);
-      console.log("====================================");
-      console.log(reps);
-      console.log("====================================");
       return reps.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

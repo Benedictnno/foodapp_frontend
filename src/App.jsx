@@ -8,17 +8,21 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import ProfilePage from "./Pages/ProfilePage";
 import SingleMealPage from "./Pages/SingleMealPage";
 import SingleDrinkPage from "./Pages/SingleDrinkPage";
+import { useSelector } from "react-redux";
+import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
+  const { user } = useSelector((store) => store.auth);
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<HomePage />}>
           <Route index path="/" element={<MainPage />} />
           <Route path="categories" element={<CategoryPage />} />
-          <Route path="Login" element={<Login />} />
+          {!user && <Route path="Login" element={<Login />} />}
           <Route path="/meal/:id" element={<SingleMealPage />} />
           <Route path="/drink/:id" element={<SingleDrinkPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
         <Route
           path="/profile-page"

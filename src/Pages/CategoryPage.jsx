@@ -13,6 +13,7 @@ import { CategoryPageStyles } from "../Styles/CategopageStyles";
 import { FiSearch } from "react-icons/fi";
 import MealsCard from "../Components/MealsCard";
 import DrinksCard from "../Components/DrinksCard";
+import { DrinksCardStyles } from "../Styles/DrinksCardStyles";
 
 function CategoryPage() {
   const {
@@ -28,7 +29,8 @@ function CategoryPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRandomCockTail());``
+    dispatch(getRandomCockTail());
+    ``;
     dispatch(getRandomMeal());
     dispatch(getMealCategory());
     if (isMeals) {
@@ -174,13 +176,22 @@ function CategoryPage() {
             <option value="Z">Z</option>
           </select>
         </div>
-        <div>
+        {/* <div>
           {isMeals ? (
             <MealsCard values={CategoryValues?.meals} />
           ) : (
             <DrinksCard values={CategoryValues?.drinks} />
           )}
-        </div>
+        </div> */}
+        <DrinksCardStyles>
+          {isMeals
+            ? CategoryValues?.map((item, index) => {
+                return <MealsCard values={item} key={index} />;
+              })
+            : CategoryValues?.map((item, index) => {
+                return <DrinksCard values={item} key={index} />;
+              })}
+        </DrinksCardStyles>
       </section>
     </CategoryPageStyles>
   );

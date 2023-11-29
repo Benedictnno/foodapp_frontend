@@ -43,7 +43,7 @@ const ProfileDataSlice = createSlice({
           })
           .addCase(getAllProfiles.fulfilled, (state, { payload }) => {
             state.isLoading = false;
-            state.profileDatas = payload.data;
+            state.profileDatas = payload.data.meals;
           })
           .addCase(getAllProfiles.rejected, (state) => {
             state.isLoading = false;

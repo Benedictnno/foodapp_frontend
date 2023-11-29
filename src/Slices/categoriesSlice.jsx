@@ -218,7 +218,11 @@ const getMealCategorySlice = createSlice({
       })
       .addCase(getSelectedInputCategory.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.CategoryValues = payload.data;
+        if (state.isMeals) {
+          state.CategoryValues = payload.data.meals;
+        }else{
+          state.CategoryValues = payload.data.drinks;
+        }
       })
       .addCase(getSelectedInputCategory.rejected, (state) => {
         state.isLoading = false;
