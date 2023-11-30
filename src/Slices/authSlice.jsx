@@ -69,6 +69,7 @@ export const auth = createSlice({
         state.isLoading = false;
         state.user = user;
         addUserToLocalStorage(user);
+        toast.success(`You Have Successfully Signed Up`)
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false;

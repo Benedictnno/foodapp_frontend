@@ -14,10 +14,10 @@ const ProfilePage = () => {
   const [isMeal, setIsMeal] = useState(true);
 
   const dispatch = useDispatch();
-  const { profileDatas } = useSelector((store) => store.Profiles);
+  const { profileDatas, isDeleted } = useSelector((store) => store.Profiles);
   useEffect(() => {
     dispatch(getAllProfiles());
-  }, []);
+  }, [isDeleted]);
 
   return (
     <>
@@ -41,13 +41,14 @@ const ProfilePage = () => {
           })}
         {profileDatas
           .filter((item) => item.type === "drink")
-          .map(({ idMeal, strMeal, strMealThumb }, index) => {
+          .map(({ idMeal, strMeal, strMealThumb,type,_id }, index) => {
             return (
               <DrinksCard
                 values={{
                   idDrink: idMeal,
                   strDrink: strMeal,
                   strDrinkThumb: strMealThumb,
+                  type,_id
                 }}
                 key={index}
               />
