@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Random from "../Components/Random";
 import { getMealCategory } from "../Slices/categoriesSlice";
 import MainCategory from "../Components/MainCategory";
+import MainPageBottom from "../Components/MainPageBottom";
 
 function MainPage() {
    const dispatch = useDispatch();
@@ -19,25 +20,25 @@ function MainPage() {
   
   return (
     <>
-    <MainPageStyles>
-      <article>
-        <h1>Imagination Beyond Food And Cocktails</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-          optio eius, nulla molestias cum velit modi officia unde recusandae
-          sapiente similique, accusantium officiis quis vel, consequuntur
-          obcaecati nam beatae eligendi? Lorem ipsum dolor sit, amet consectetur
-          adipisicing elit. Nulla illo hic impedit, laudantium voluptatibus
-          corrupti voluptas numquam similique iste ipsam.
-        </p>
-      </article>
-      <div className="blob_container">
-        <img src={blob} alt="" className="blob" />
-        <img src={jollof} alt="jollof" className="img" />
-      </div>
-    </MainPageStyles>
-      <Random/>
-      <MainCategory/>
+      <MainPageStyles>
+        <article>
+          <h1>Imagination Beyond Food And Cocktails</h1>
+          <p>
+            Welcome to the world of culinary exploration, where Delicacy Hub
+            transforms cooking into an art and dining into an experience. We're
+            your all-in-one platform designed to cater to both novice cooks and
+            seasoned chefs alike, offering an extensive array of recipes,
+            ingredients, and inspiration.
+          </p>
+        </article>
+        <div className="blob_container">
+          <img src={blob} alt="" className="blob" />
+          <img src={jollof} alt="jollof" className="img" />
+        </div>
+      </MainPageStyles>
+      <Random />
+      <MainCategory />
+      <MainPageBottom/>
     </>
   );
 }
