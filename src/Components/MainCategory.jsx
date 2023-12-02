@@ -4,11 +4,12 @@ import { MainCategoryStyles } from "../Styles/MainCategotyStyle";
 import { Link } from "react-router-dom";
 import { MdExpandMore } from "react-icons/md";
 import { toggleCategories } from "../Slices/categoriesSlice";
+import { getUserfromLocalStorage } from "../Utils/localStorage";
 function MainCategory() {
   const { isLoading, mealCategories, drinkCategories } = useSelector(
     (store) => store.category
   );
-
+  const user = getUserfromLocalStorage();
   const dispatch = useDispatch();
 
   return (
@@ -56,10 +57,14 @@ function MainCategory() {
           );
         })}
       </MainCategoryStyles>
-      <article className="SignUp_container">
-        <p>Sign Up to get free recipes on your favorite meals</p>
-        <Link to={'/Login'} className="SignUp_Btn">Sign Up</Link>
-      </article>
+      {!user && (
+        <article className="SignUp_container">
+          <p>Sign Up to get free recipes on your favorite meals</p>
+          <Link to={"/Login"} className="SignUp_Btn">
+            Sign Up
+          </Link>
+        </article>
+      )}
     </section>
   );
 }

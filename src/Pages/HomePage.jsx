@@ -2,11 +2,13 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { TopNavStyled, TopStyled } from "../Styles/TopNavStyle";
 import { useSelector } from "react-redux";
+import Footer from "../Components/Footer";
 
 function HomePage() {
   const { user } = useSelector((store) => store.auth);
 
   return (
+    <>
     <TopStyled>
       <TopNavStyled>
         <h2>
@@ -26,6 +28,8 @@ function HomePage() {
       </TopNavStyled>
       <Outlet />
     </TopStyled>
+    <Footer/>
+    </>
   );
 }
 

@@ -6,6 +6,7 @@ import { getAllProfiles } from "../Slices/ProfileDataSlice";
 import MealsCard from "../Components/MealsCard";
 import DrinksCard from "../Components/DrinksCard";
 import { DrinksCardStyles } from "../Styles/DrinksCardStyles";
+import { removeUserfromLocalStorage } from "../Utils/localStorage";
 
 const ProfilePage = () => {
   const {
@@ -27,7 +28,7 @@ const ProfilePage = () => {
             Hello <span>{user.name}</span>
           </Link>{" "}
         </h2>
-        <h2 className="SignUp_Btn">LogOut</h2>
+        <h2 className="SignUp_Btn" onClick={removeUserfromLocalStorage}>LogOut</h2>
       </TopNavStyled>
       <div>
         <button>Meal</button>

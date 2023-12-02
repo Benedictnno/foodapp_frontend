@@ -17,6 +17,7 @@ export const getRandomMeal = createAsyncThunk(
       const resp = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
+     
       return resp;
     } catch (error) {
       console.log(error);
@@ -31,6 +32,7 @@ export const getRandomCockTail = createAsyncThunk(
       const resp = await axios.get(
         "https://www.thecocktaildb.com/api/json/v1/1/random.php"
       );
+     
       return resp;
     } catch (error) {
       console.log(error);
@@ -53,17 +55,18 @@ const RandomMealSlice = createSlice({
     })
     .addCase(getRandomMeal.fulfilled, (state,{payload}) => {
         state.isLoading = false;
-        state.randomMealData = payload.data;
+        state.randomMealData = payload.data.meals[0];
     })
     .addCase(getRandomMeal.rejected, (state) => {
         state.isLoading = false;
+
     })
     .addCase(getRandomCockTail.pending, (state) => {
         state.isLoading = true;
     })
     .addCase(getRandomCockTail.fulfilled, (state,{payload}) => {
         state.isLoading = false;
-        state.randomCockTailData = payload.data;
+        state.randomCockTailData = payload.data.drinks[0]
     })
     .addCase(getRandomCockTail.rejected, (state) => {
         state.isLoading = false;

@@ -19,16 +19,19 @@ function MainPageBottom() {
   ];
 
   return (
-    <DrinksCardStyles>
-      {textData.map(({ Header, text }, index) => {
-        return (
-          <div key={index} className="mainCard">
-            <h2>{Header}</h2>
-            <p> {text} </p>
-          </div>
-        );
-      })}
-    </DrinksCardStyles>
+    <>
+      <h1>Our Culinary Oasis - Key Features:</h1>
+      <DrinksCardStyles>
+        {textData.map(({ Header, text }, index) => {
+          return (
+            <div key={index} className="mainCard">
+              <h2>{Header}</h2>
+              <p> {text} </p>
+            </div>
+          );
+        })}
+      </DrinksCardStyles>
+    </>
   );
 }
 
