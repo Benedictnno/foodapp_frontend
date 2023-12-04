@@ -32,6 +32,9 @@ export const loginUser = createAsyncThunk(
     
     try {
       const reps = await customUrl.post("auth/login", user);
+      console.log('====================================');
+      console.log(reps.data);
+      console.log('====================================');
       return reps.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -65,11 +68,11 @@ export const auth = createSlice({
         state.isLoading = true;
       })
       .addCase(registerUser.fulfilled, (state, { payload }) => {
-        const { user } = payload;
+        const user  = payload;
         state.isLoading = false;
         state.user = user;
         addUserToLocalStorage(user);
-        toast.success(`You Have Successfully Signed Up`)
+        // toast.success(`You Have Successfully Signed Up`)
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -84,7 +87,7 @@ export const auth = createSlice({
         state.isLoading = false;
         state.user = payload;
         addUserToLocalStorage(payload);
-        toast.success(`Welcome Back ${payload.user.name}`);
+        // toast.success(`Welcome Back ${payload.user.name}`);
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false;

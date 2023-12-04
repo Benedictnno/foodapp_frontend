@@ -19,7 +19,7 @@ function App() {
         <Route element={<HomePage />}>
           <Route index path="/" element={<MainPage />} />
           <Route path="categories" element={<CategoryPage />} />
-          {!user && <Route path="Login" element={<Login />} />}
+          {!user && <Route path="/Login" element={<Login />} />}
           <Route path="/meal/:id" element={<SingleMealPage />} />
           <Route path="/drink/:id" element={<SingleDrinkPage />} />
           <Route path="*" element={<ErrorPage />} />

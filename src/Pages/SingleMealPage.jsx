@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getMealSinglePage } from "../Slices/SinglePageSlice";
 import { FaRegStar } from "react-icons/fa6";
-import { AddProfiles } from "../Slices/ProfileDataSlice";
+import { FaStar } from "react-icons/fa";
+
+import { AddProfiles, getAllProfiles } from "../Slices/ProfileDataSlice";
 
 function SingleMealPage() {
   const {
@@ -30,14 +32,33 @@ function SingleMealPage() {
       strIngredient15,
       strIngredient16,
       strIngredient17,
+      strIngredient18,
+      strIngredient19,
+      strIngredient20,
       strInstructions,
     },
   } = useSelector((store) => store.SinglePage);
+  const { profileDatas } = useSelector((store) => store.Profiles);
+
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getAllProfiles());
+
     dispatch(getMealSinglePage(params.id));
   }, []);
+
+  function Compare() {
+    const compared = profileDatas.map((item) => {
+      if (idMeal === item.idMeal) {
+        return true;
+      } else return false;
+    });
+    const fact = compared.includes(true);
+    return fact;
+  }
+  
+  const compare = Compare();
 
   const ingredients = [
     strIngredient1,
@@ -57,6 +78,9 @@ function SingleMealPage() {
     strIngredient15,
     strIngredient16,
     strIngredient17,
+    strIngredient18,
+    strIngredient19,
+    strIngredient20,
   ];
   return (
     <>
@@ -78,22 +102,25 @@ function SingleMealPage() {
                 }}
               >
                 <h1>{strMeal}</h1>
-
-                <FaRegStar
-                  size={40}
-                  onClick={() =>
-                    dispatch(
-                      AddProfiles({
-                        idMeal,
-                        strMeal,
-                        strArea,
-                        strCategory,
-                        strMealThumb,
-                        note: "",
-                      })
-                    )
-                  }
-                />
+                {compare ? (
+                  <FaStar size={40} className="colored" />
+                ) : (
+                  <FaRegStar
+                    size={40}
+                    onClick={() =>
+                      dispatch(
+                        AddProfiles({
+                          idMeal,
+                          strMeal,
+                          strArea,
+                          strCategory,
+                          strMealThumb,
+                          note: "",
+                        })
+                      )
+                    }
+                  />
+                )}
               </div>
               <h2>
                 Area : <span className="Btn">{strArea}</span>

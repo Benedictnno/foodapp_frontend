@@ -27,6 +27,7 @@ export const CategoryPageStyles = styled.main`
     display: flex;
     border: 2px solid;
     margin: 0 1rem;
+    border-radius: 5px;
   }
   .categoryInputContainer {
     display: flex;

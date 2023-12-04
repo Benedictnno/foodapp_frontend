@@ -17,7 +17,7 @@ function HomePage() {
           </Link>{" "}
         </h2>
         {!user ? (
-          <Link to={"profile-page"} className="SignUp_Btn">
+          <Link to={"Login"} className="SignUp_Btn">
             Sign Up
           </Link>
         ) : (

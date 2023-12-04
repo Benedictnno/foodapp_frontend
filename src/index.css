@@ -104,6 +104,11 @@ border-radius: 10px;
 }
 .mainCard:hover{
 color: #e2d1d1;
+background-color: #f1890e;
+}
 
-  background-color: #f1890e;
+.colored{
+  color: #f1890e;
+  /* background-color: #f1890e; */
+  cursor: pointer;
 }

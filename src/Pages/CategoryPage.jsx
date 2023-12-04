@@ -128,6 +128,7 @@ function CategoryPage() {
             <input
               type="text"
               value={inputSearchValue}
+              placeholder="Search for Meals and Drinks"
               onChange={(e) => dispatch(inputValue(e.target.value))}
               className="categoryInput"
             />

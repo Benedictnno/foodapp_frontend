@@ -49,7 +49,7 @@ const ProfileDataSlice = createSlice({
     name:'Profile data',
     initialState,
     reducers:{
-
+      
     },
     extraReducers:(builder)=>{
         builder

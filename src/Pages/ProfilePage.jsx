@@ -6,13 +6,10 @@ import { getAllProfiles } from "../Slices/ProfileDataSlice";
 import MealsCard from "../Components/MealsCard";
 import DrinksCard from "../Components/DrinksCard";
 import { DrinksCardStyles } from "../Styles/DrinksCardStyles";
-import { removeUserfromLocalStorage } from "../Utils/localStorage";
+import { getUserfromLocalStorage, removeUserfromLocalStorage } from "../Utils/localStorage";
 
 const ProfilePage = () => {
-  const {
-    user: { user },
-  } = useSelector((store) => store.auth);
-  const [isMeal, setIsMeal] = useState(true);
+  const {user} = getUserfromLocalStorage()
 
   const dispatch = useDispatch();
   const { profileDatas, isDeleted } = useSelector((store) => store.Profiles);

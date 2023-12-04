@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDrinkSinglePage } from "../Slices/SinglePageSlice";
 import { FaRegStar } from "react-icons/fa6";
-import { AddProfiles } from "../Slices/ProfileDataSlice";
+import { AddProfiles, getAllProfiles } from "../Slices/ProfileDataSlice";
+import { FaStar } from "react-icons/fa";
 
 function SingleDrinkPage() {
   const {
@@ -26,13 +27,28 @@ function SingleDrinkPage() {
       strInstructions,
     },
   } = useSelector((store) => store.SinglePage);
+  const { profileDatas } = useSelector((store) => store.Profiles);
 
   const params = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getAllProfiles());
+
     dispatch(getDrinkSinglePage(params.id));
   }, []);
+
+  function Compare() {
+    const compared = profileDatas.map((item) => {
+      if (idDrink === item.idMeal) {
+        return true;
+      } else return false;
+    });
+    const fact = compared.includes(true);
+    return fact;
+  }
+
+  const compare = Compare();
 
   const ingredients = [
     strIngredient1,
@@ -66,23 +82,26 @@ function SingleDrinkPage() {
                 }}
               >
                 <h1>{strDrink}</h1>
-
-                <FaRegStar
-                  size={40}
-                  onClick={() =>
-                    dispatch(
-                      AddProfiles({
-                        type:"drink",
-                        idMeal:idDrink,
-                        strMeal:strDrink,
-                        strArea:strGlass,
-                        strCategory,
-                        strMealThumb:strDrinkThumb,
-                        note: "",
-                      })
-                    )
-                  }
-                />
+                {compare ? (
+                  <FaStar size={40} className="colored" />
+                ) : (
+                  <FaRegStar
+                    size={40}
+                    onClick={() =>
+                      dispatch(
+                        AddProfiles({
+                          type: "drink",
+                          idMeal: idDrink,
+                          strMeal: strDrink,
+                          strArea: strGlass,
+                          strCategory,
+                          strMealThumb: strDrinkThumb,
+                          note: "",
+                        })
+                      )
+                    }
+                  />
+                )}
               </div>
               <h2>
                 Glass : <span className="Btn">{strGlass}</span>
