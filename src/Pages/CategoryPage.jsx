@@ -7,6 +7,7 @@ import {
   selectedInputValue,
   toggleCategories,
   open,
+  getSearchedMeal,
 } from "../Slices/categoriesSlice";
 import { getRandomCockTail, getRandomMeal } from "../Slices/randomMealsSlice";
 import { getMealCategory } from "../Slices/categoriesSlice";
@@ -151,7 +152,7 @@ function CategoryPage() {
             <button
               type="button"
               className={"Btn SignUp_Btn_nc"}
-              // onClick={() => dispatch(toggleCategories(true))}
+              onClick={() => dispatch(getSearchedMeal())}
             >
               Search
             </button>

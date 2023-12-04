@@ -98,9 +98,10 @@ const initialState = {
   ],
 
   showMenu: false,
- };
+};
 const drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
 const mealsUrl = "https://www.themealdb.com/api/json/v1/1/";
+
 export const getMealCategory = createAsyncThunk(
   "meals category",
   async (_, thunk) => {
@@ -115,12 +116,40 @@ export const getMealCategory = createAsyncThunk(
   }
 );
 
+
+export const getSearchedMeal = createAsyncThunk(
+  "getSearchedMeal",
+  async (_, thunkAPI) => {
+    const { isMeals, inputSearchValue } = thunkAPI.getState().category;
+
+    if (isMeals) {
+      try {
+        const reps = await axios.get(
+          `${mealsUrl}search.php?s=${inputSearchValue}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const reps = await axios.get(
+          `${drinkUrl}search.php?s=${inputSearchValue}`
+        );
+        return reps;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+);
+
 export const getSelectedInputCategory = createAsyncThunk(
   "meals-category-value",
   async (_, thunkAPI) => {
     const { categoryInput, isMeals, selectedInput } =
       thunkAPI.getState().category;
-     
+
     if (categoryInput === "Alcoholic" || categoryInput === "Non_Alcoholic") {
       try {
         const reps = await axios.get(
@@ -233,6 +262,20 @@ const getMealCategorySlice = createSlice({
         }
       })
       .addCase(getSelectedInputCategory.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getSearchedMeal.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSearchedMeal.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        if (state.isMeals) {
+          state.CategoryValues = payload.data.meals;
+        } else {
+          state.CategoryValues = payload.data.drinks;
+        }
+      })
+      .addCase(getSearchedMeal.rejected, (state) => {
         state.isLoading = false;
       });
   },
