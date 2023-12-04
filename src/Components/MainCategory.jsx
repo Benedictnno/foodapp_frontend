@@ -15,7 +15,7 @@ function MainCategory() {
   return (
     <section>
       <div className="titles_container">
-        <h1>Meals Major ingredient's</h1>{" "}
+        <h1>Meals Major categories</h1>
         <Link
           to={"/categories"}
           className="categories_link"

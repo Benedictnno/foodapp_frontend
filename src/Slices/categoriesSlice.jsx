@@ -96,7 +96,9 @@ const initialState = {
       image: "https://www.thecocktaildb.com/images/ingredients/Tequila.png",
     },
   ],
-};
+
+  showMenu: false,
+ };
 const drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
 const mealsUrl = "https://www.themealdb.com/api/json/v1/1/";
 export const getMealCategory = createAsyncThunk(
@@ -197,6 +199,12 @@ const getMealCategorySlice = createSlice({
     selectedInputValue: (state, payload) => {
       state.selectedInput = payload.payload;
     },
+    open: (state) => {
+      state.showMenu = true;
+    },
+    close: (state) => {
+      state.showMenu = false;
+    },
   },
 
   extraReducers: (builder) => {
@@ -220,7 +228,7 @@ const getMealCategorySlice = createSlice({
         state.isLoading = false;
         if (state.isMeals) {
           state.CategoryValues = payload.data.meals;
-        }else{
+        } else {
           state.CategoryValues = payload.data.drinks;
         }
       })
@@ -236,6 +244,8 @@ export const {
   categoryInputValue,
   inputValue,
   selectedInput,
+  open,
+  close,
 } = getMealCategorySlice.actions;
 
 export default getMealCategorySlice.reducer;

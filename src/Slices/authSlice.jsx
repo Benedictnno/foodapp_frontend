@@ -18,7 +18,6 @@ export const registerUser = createAsyncThunk(
     try {
       const reps = await customUrl.post("auth/register", user);
 
-     
       return reps.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -29,12 +28,9 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (user, thunkAPI) => {
-    
     try {
       const reps = await customUrl.post("auth/login", user);
-      console.log('====================================');
-      console.log(reps.data);
-      console.log('====================================');
+     
       return reps.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -46,20 +42,7 @@ export const auth = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes.
-      // Also, no return statement is required from these functions.
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
+   
   },
   extraReducers: (builder) => {
     builder
@@ -68,7 +51,7 @@ export const auth = createSlice({
         state.isLoading = true;
       })
       .addCase(registerUser.fulfilled, (state, { payload }) => {
-        const user  = payload;
+        const user = payload;
         state.isLoading = false;
         state.user = user;
         addUserToLocalStorage(user);
@@ -96,6 +79,6 @@ export const auth = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = auth.actions;
+export const { } = auth.actions;
 
 export default auth.reducer;

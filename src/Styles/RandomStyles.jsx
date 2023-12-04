@@ -22,7 +22,6 @@ export const RandomStyles = styled.section`
     padding: 0.6rem 0;
     display: flex;
     justify-content: space-between;
-    
   }
   .detail > h1 {
     padding-left: 1rem;
@@ -34,6 +33,13 @@ export const RandomStyles = styled.section`
     width: 100%;
     height: 20rem;
     border-radius: 5px;
+  }
+  @media only screen and (max-width: 425px) {
+    /*Small smartphones [325px -> 425px]*/
+    flex-direction: column;
+    .detail_container {
+      width: 22rem;
+    }
   }
 `;
 export const RandomStylesContainer = styled.section`

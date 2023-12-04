@@ -33,7 +33,7 @@ function Random() {
           <Link to={`/drink/${idDrink}`}>
             <img src={strDrinkThumb} alt="drink image" />
           </Link>
-          
+
           <div className="detail">
             <h1>{strDrink}</h1>
             <h2>

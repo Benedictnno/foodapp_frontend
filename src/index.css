@@ -96,7 +96,6 @@ border-radius: 10px;
 .mainCard>h2{
   margin-bottom: 1rem;
   text-align: center;
-  
 }
 
 .mainCard>p{
@@ -109,6 +108,37 @@ background-color: #f1890e;
 
 .colored{
   color: #f1890e;
-  /* background-color: #f1890e; */
   cursor: pointer;
+}
+
+.Ham_menu{
+  position: absolute;
+  background-color: #f1890e;
+  width: 100vw;
+  height: auto;
+  padding: 2rem 1rem ;
+ 
+}
+
+.unShow_menu{
+  display: none;
+}
+
+@media only screen and (max-width: 425px) {
+  /*Small smartphones [325px -> 425px]*/
+  .SinglePage_page_con {
+     flex-direction: column;
+    }
+
+    .image{
+      width:100%;
+      height:20rem;
+    }
+   .show_menu{
+     display: none;
+  }
+
+    .unShow_menu {
+      display: inline;
+    }
 }

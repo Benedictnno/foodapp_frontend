@@ -21,7 +21,16 @@ export const TopNavStyled = styled.div`
     display: inline-block;
     
   }
+
+  @media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
+  flex-direction:column;
+}
 `;
 export const TopStyled = styled.div`
   margin: 1rem 6rem;
+  @media only screen and (max-width: 425px){
+    margin: 1rem 1rem;
+	/*Small smartphones [325px -> 425px]*/
+}
 `;

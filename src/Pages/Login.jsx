@@ -3,6 +3,7 @@ import { LoginStyles } from "../Styles/LoginStyles";
 import { loginUser, registerUser } from "../Slices/authSlice";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -13,8 +14,10 @@ const initialState = {
 
 function Login() {
   const [values, setValues] = useState(initialState);
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -32,6 +35,7 @@ const dispatch = useDispatch()
       toast.error("Please fill out fields");
       return;
     }
+    navigate("/categories");
 
     if (isMember) {
       dispatch(loginUser({ email, password }));

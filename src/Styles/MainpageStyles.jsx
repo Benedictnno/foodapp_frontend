@@ -24,4 +24,8 @@ export const MainPageStyles = styled.section`
     margin-right: -1rem;
      
   }
+  @media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
+.img{display:none}
+}
 `;

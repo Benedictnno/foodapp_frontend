@@ -8,7 +8,6 @@ import Random from "../Components/Random";
 import { getMealCategory } from "../Slices/categoriesSlice";
 import MainCategory from "../Components/MainCategory";
 import MainPageBottom from "../Components/MainPageBottom";
-import Footer from "../Components/Footer";
 
 function MainPage() {
    const dispatch = useDispatch();

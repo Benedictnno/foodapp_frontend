@@ -1,11 +1,12 @@
 import React from 'react'
 import { FooterStyle } from '../Styles/FooterStyled';
+import { BottomStyles } from '../Styles/ButtomStyles';
 
 function Footer() {
     const currentYear = new Date().getFullYear();
 
   return (
-    <>
+    <BottomStyles>
       <FooterStyle>
         <article>
           <h1>Why Choose Delicacy Hub?</h1>
@@ -28,7 +29,7 @@ function Footer() {
         </article>
         <p>&copy; {currentYear} Delicacy Hub. All Rights Reserved.</p>
       </FooterStyle>
-    </>
+    </BottomStyles>
   );
 }
 
