@@ -152,6 +152,7 @@ function CategoryPage() {
               placeholder="Search for Meals and Drinks"
               onChange={(e) => dispatch(inputValue(e.target.value))}
               className="categoryInput"
+              autoFocus
             />
           </div>
           <button
