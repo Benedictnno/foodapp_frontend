@@ -124,6 +124,22 @@ background-color: #f1890e;
   display: none;
 }
 
+.fixed {
+  position: -webkit-sticky;
+  /* for browser compatibility */
+  position: sticky;
+  top: 0rem;
+  background-color: #ffffff;
+  /* left: 0; */
+  padding: 1rem 0;
+}
+/* .text_fixed{
+  position: -webkit-sticky;
+    for browser compatibility 
+    position: sticky;
+    top: 7rem;
+} */
+
 @media only screen and (max-width: 425px) {
   /*Small smartphones [325px -> 425px]*/
   .SinglePage_page_con {

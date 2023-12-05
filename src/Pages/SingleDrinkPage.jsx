@@ -5,6 +5,7 @@ import { getDrinkSinglePage } from "../Slices/SinglePageSlice";
 import { FaRegStar } from "react-icons/fa6";
 import { AddProfiles, getAllProfiles } from "../Slices/ProfileDataSlice";
 import { FaStar } from "react-icons/fa";
+import Loader from "../Components/Loader";
 
 function SingleDrinkPage() {
   const {
@@ -26,6 +27,8 @@ function SingleDrinkPage() {
       strIngredient10,
       strInstructions,
     },
+    successful,
+    isLoading,
   } = useSelector((store) => store.SinglePage);
   const { profileDatas } = useSelector((store) => store.Profiles);
 
@@ -36,7 +39,7 @@ function SingleDrinkPage() {
     dispatch(getAllProfiles());
 
     dispatch(getDrinkSinglePage(params.id));
-  }, []);
+  }, [successful]);
 
   function Compare() {
     const compared = profileDatas.map((item) => {
@@ -62,6 +65,10 @@ function SingleDrinkPage() {
     strIngredient9,
     strIngredient10,
   ];
+
+  if (isLoading) {
+    return <Loader/>
+  }
   return (
     <>
       {strDrink ? (
@@ -82,7 +89,7 @@ function SingleDrinkPage() {
                 }}
               >
                 <h1>{strDrink}</h1>
-                {compare ? (
+                {successful || compare ? (
                   <FaStar size={40} className="colored" />
                 ) : (
                   <FaRegStar

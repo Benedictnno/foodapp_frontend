@@ -6,6 +6,7 @@ import { FaRegStar } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 
 import { AddProfiles, getAllProfiles } from "../Slices/ProfileDataSlice";
+import Loader from "../Components/Loader";
 
 function SingleMealPage() {
   const {
@@ -37,6 +38,8 @@ function SingleMealPage() {
       strIngredient20,
       strInstructions,
     },
+    isLoading,
+    successful,
   } = useSelector((store) => store.SinglePage);
   const { profileDatas } = useSelector((store) => store.Profiles);
 
@@ -46,7 +49,7 @@ function SingleMealPage() {
     dispatch(getAllProfiles());
 
     dispatch(getMealSinglePage(params.id));
-  }, []);
+  }, [successful]);
 
   function Compare() {
     const compared = profileDatas.map((item) => {
@@ -57,7 +60,7 @@ function SingleMealPage() {
     const fact = compared.includes(true);
     return fact;
   }
-  
+
   const compare = Compare();
 
   const ingredients = [
@@ -82,6 +85,10 @@ function SingleMealPage() {
     strIngredient19,
     strIngredient20,
   ];
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       {strMeal ? (
@@ -102,7 +109,7 @@ function SingleMealPage() {
                 }}
               >
                 <h1>{strMeal}</h1>
-                {compare ? (
+                {successful || compare ? (
                   <FaStar size={40} className="colored" />
                 ) : (
                   <FaRegStar

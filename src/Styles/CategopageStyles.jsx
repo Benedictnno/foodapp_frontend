@@ -4,13 +4,10 @@ export const CategoryPageStyles = styled.main`
   display: grid;
   margin-top: 2rem;
   grid-template-columns: 2fr 9fr;
-  position: relative;
+  
   .btnContainer {
     display: flex;
-
     margin: 1rem 0;
-
-    /* justify-content: space-between; */
   }
   .ingredients_text {
     margin: 1rem 0;
@@ -26,7 +23,7 @@ export const CategoryPageStyles = styled.main`
   .InputContainer {
     display: flex;
     border: 2px solid;
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
     border-radius: 5px;
   }
   .categoryInputContainer {
@@ -38,10 +35,11 @@ export const CategoryPageStyles = styled.main`
     font-size: 1.1rem;
     padding: 0.5rem;
   }
-
+  
   @media only screen and (max-width: 425px) {
     /*Small smartphones [325px -> 425px]*/
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
+    position: relative;
 
     .categoryInput {
       width: 10rem;

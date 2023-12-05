@@ -4,6 +4,7 @@ import CategoryPage from "./Pages/CategoryPage";
 import MainPage from "./Pages/MainPage";
 import Login from "./Pages/Login";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import ProfilePage from "./Pages/ProfilePage";
 import SingleMealPage from "./Pages/SingleMealPage";

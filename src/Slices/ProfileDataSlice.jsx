@@ -81,6 +81,8 @@ const ProfileDataSlice = createSlice({
           .addCase(deleteProfile.fulfilled, (state, { payload }) => {
             state.isDeleted = true;
             state.successful = true;
+            toast.error("item removed successfully");
+
           })
           .addCase(deleteProfile.rejected, (state) => {
             state.isLoading = false;

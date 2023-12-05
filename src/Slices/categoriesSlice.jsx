@@ -116,7 +116,6 @@ export const getMealCategory = createAsyncThunk(
   }
 );
 
-
 export const getSearchedMeal = createAsyncThunk(
   "getSearchedMeal",
   async (_, thunkAPI) => {
@@ -171,20 +170,20 @@ export const getSelectedInputCategory = createAsyncThunk(
       } catch (error) {
         console.log(error);
       }
-    } else if (!isMeals && selectedInput) {
-      console.log(selectedInput);
+    } else if (isMeals && selectedInput) {
       try {
         const reps = await axios.get(
-          `${drinkUrl}search.php?f=${selectedInput}`
+          `${mealsUrl}search.php?f=${selectedInput}`
         );
         return reps;
       } catch (error) {
         console.log(error);
       }
-    } else if (isMeals && selectedInput) {
+    } else if (!isMeals && selectedInput) {
+      console.log(selectedInput);
       try {
         const reps = await axios.get(
-          `${mealsUrl}search.php?f=${selectedInput}`
+          `${drinkUrl}search.php?f=${selectedInput}`
         );
         return reps;
       } catch (error) {
