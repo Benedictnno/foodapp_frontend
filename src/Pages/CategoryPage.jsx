@@ -19,7 +19,6 @@ import { DrinksCardStyles } from "../Styles/DrinksCardStyles";
 import { HiMenuAlt1 } from "react-icons/hi";
 import HamMenu from "../Components/hamMenu";
 
-
 function CategoryPage() {
   const {
     fullMealCategories,
@@ -27,6 +26,7 @@ function CategoryPage() {
     selectedInput,
     fullDrinkCategories,
     isMeals,
+    isLoading,
     categoryInput,
     CategoryValues,
     showMenu,
@@ -36,7 +36,7 @@ function CategoryPage() {
 
   useEffect(() => {
     dispatch(getRandomCockTail());
-    
+
     dispatch(getRandomMeal());
     dispatch(getMealCategory());
     if (isMeals) {
@@ -56,7 +56,7 @@ function CategoryPage() {
     dispatch(selectedInputValue(cat)), dispatch(getSelectedInputCategory());
   };
 
-
+  
 
   return (
     <CategoryPageStyles>
@@ -210,10 +210,12 @@ function CategoryPage() {
         <DrinksCardStyles>
           {isMeals
             ? CategoryValues?.map((item, index) => {
-                return <MealsCard values={item} key={index} />;
+                return <MealsCard values={item} isLoading={isLoading} key={index} />;
               })
             : CategoryValues?.map((item, index) => {
-                return <DrinksCard values={item} key={index} />;
+                return (
+                  <DrinksCard values={item} isLoading={isLoading} key={index} />
+                );
               })}
         </DrinksCardStyles>
       </section>

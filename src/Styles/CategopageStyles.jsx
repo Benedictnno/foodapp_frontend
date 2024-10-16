@@ -4,7 +4,7 @@ export const CategoryPageStyles = styled.main`
   display: grid;
   margin-top: 2rem;
   grid-template-columns: 2fr 9fr;
-  
+
   .btnContainer {
     display: flex;
     margin: 1rem 0;
@@ -34,8 +34,9 @@ export const CategoryPageStyles = styled.main`
     border: none;
     font-size: 1.1rem;
     padding: 0.5rem;
+    outline: none;
   }
-  
+
   @media only screen and (max-width: 425px) {
     /*Small smartphones [325px -> 425px]*/
     grid-template-columns: 1fr;

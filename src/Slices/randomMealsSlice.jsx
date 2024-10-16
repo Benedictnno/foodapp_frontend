@@ -7,7 +7,7 @@ const initialState = {
   randomMealData: [],
   randomCockTailData: [],
 
-  hover:false,
+  hover: false,
 };
 
 export const getRandomMeal = createAsyncThunk(
@@ -17,7 +17,7 @@ export const getRandomMeal = createAsyncThunk(
       const resp = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
-     
+
       return resp;
     } catch (error) {
       console.log(error);
@@ -32,7 +32,7 @@ export const getRandomCockTail = createAsyncThunk(
       const resp = await axios.get(
         "https://www.thecocktaildb.com/api/json/v1/1/random.php"
       );
-     
+
       return resp;
     } catch (error) {
       console.log(error);
@@ -44,35 +44,34 @@ const RandomMealSlice = createSlice({
   name: "Random",
   initialState,
   reducers: {
-    showRandom:(state,{payload})=>{
-    state.hover=payload
-   
-    }
+    showRandom: (state, { payload }) => {
+      state.hover = payload;
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(getRandomMeal.pending, (state) => {
+    builder
+      .addCase(getRandomMeal.pending, (state) => {
         state.isLoading = true;
-    })
-    .addCase(getRandomMeal.fulfilled, (state,{payload}) => {
+      })
+      .addCase(getRandomMeal.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.randomMealData = payload.data.meals[0];
-    })
-    .addCase(getRandomMeal.rejected, (state) => {
+      })
+      .addCase(getRandomMeal.rejected, (state) => {
         state.isLoading = false;
-
-    })
-    .addCase(getRandomCockTail.pending, (state) => {
+      })
+      .addCase(getRandomCockTail.pending, (state) => {
         state.isLoading = true;
-    })
-    .addCase(getRandomCockTail.fulfilled, (state,{payload}) => {
+      })
+      .addCase(getRandomCockTail.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.randomCockTailData = payload.data.drinks[0]
-    })
-    .addCase(getRandomCockTail.rejected, (state) => {
+        state.randomCockTailData = payload.data.drinks[0];
+      })
+      .addCase(getRandomCockTail.rejected, (state) => {
         state.isLoading = false;
-    });
+      });
   },
 });
 
-export const {showRandom}= RandomMealSlice.actions
+export const { showRandom } = RandomMealSlice.actions;
 export default RandomMealSlice.reducer;

@@ -21,7 +21,10 @@ function MainCategory() {
           className="categories_link"
           onClick={() => dispatch(toggleCategories(true))}
         >
-          See More <MdExpandMore size={25} />
+          <span>See More</span>
+          <span className="categories_link_icon">
+            <MdExpandMore size={30} />
+          </span>
         </Link>
       </div>
       <MainCategoryStyles>
@@ -43,7 +46,7 @@ function MainCategory() {
           className="categories_link"
           onClick={() => dispatch(toggleCategories(false))}
         >
-          See More <MdExpandMore size={25} />
+          See More <MdExpandMore size={30} />
         </Link>
       </div>
       <MainCategoryStyles>

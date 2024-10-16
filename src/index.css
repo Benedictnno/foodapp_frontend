@@ -60,11 +60,27 @@
 .Profile_space{
   margin: 2rem 6rem;
 }
+.skeleton {
+  content: ' ';
+  cursor: progress;
+
+  background: linear-gradient(90deg, #ddda 40%, #efefefaa, #ddda 60%) right / 300% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+}
 
 .categories_link{
+  display:flex;
+  align-items: center;
   text-decoration: none;
   font-weight: 600;
   color: black;
+}
+
+.cardLoaderHead{
+  width: 100px; height: 100px; border-radius: 100%;
+}
+.cardLoaderText{
+  width: 100px; height: 1em;
 }
 
 .SinglePage_page_con{

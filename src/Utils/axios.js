@@ -19,4 +19,4 @@ customUrl.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-export default customUrl 
+export default customUrl  
